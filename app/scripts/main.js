@@ -33,23 +33,29 @@ $(document).ready(function() {
 
 	// Shows the next question
 	window.question = function() {
+		// If the questions are over, records to database and show the result
 		if(window.index >= window.json.length) {
 			$('.questions').fadeOut(1000, function(){
-				$('.results').removeClass('hide').fadeIn('slow', function() {
-					$('#total').html(((window.sum / 110) * 100).toFixed(1) + '%');
-					$('#total').fadeIn(1000);
+				$.post('http://localhost:8888/teste/index.php?save', { 'name': 'John', 'age': '21', 'gender': 'm', 'religion': 'crente', 'answers': '1,2,3,4,1,2,3,4,1,2,3' }).done(function(data) {
+					$('.results').removeClass('hide').fadeIn('slow', function() {
+						$('#total').html(((window.sum / 110) * 100).toFixed(1) + '%');
+						$('#total').fadeIn(1000);
+					});
+				}).fail(function() {
+					window.alert('Não é possível! Ocorreu um erro! :-O\nSe o Chapolin não vier para nos defender, tente novamente daqui a pouquinho.');
 				});
 			});
+		} else {
+			window.index++;
+			window.createMenu(window.json,window.index);
+			$('input[name=answer]').attr('checked',false);
+			$('.questions').removeClass('hide');
+			$('#question').html(window.json[window.index-1].title);
+			$('#option-1').html(window.json[window.index-1].option1);
+			$('#option-2').html(window.json[window.index-1].option2);
+			$('#option-3').html(window.json[window.index-1].option3);
+			$('#option-4').html(window.json[window.index-1].option4);
 		}
-		window.index++;
-		window.createMenu(window.json,window.index);
-		$('input[name=answer]').attr('checked',false);
-		$('.questions').removeClass('hide');
-		$('#question').html(window.json[window.index-1].title);
-		$('#option-1').html(window.json[window.index-1].option1);
-		$('#option-2').html(window.json[window.index-1].option2);
-		$('#option-3').html(window.json[window.index-1].option3);
-		$('#option-4').html(window.json[window.index-1].option4);
 	};
 
 
