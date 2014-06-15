@@ -46,14 +46,16 @@
 			<p><label for="radio-2"><input id="radio-2" name="answer" type="radio" value="2"> <span id="option-2">Opção 2</span></label></p>
 			<p><label for="radio-3"><input id="radio-3" name="answer" type="radio" value="3"> <span id="option-3">Opção 3</span></label></p>
 			<p><label for="radio-4"><input id="radio-4" name="answer" type="radio" value="4"> <span id="option-4">Opção 4</span></label></p>
-			<button class="btn btn-lg btn-success" onclick="question()">Próxima pergunta</button>
+			<button class="btn btn-lg btn-success" onclick="validate()">Próxima pergunta</button>
 		</div>
-		<div class="col-sm-4"><img class="main-image" src="images/teste-da-bondade.jpg" alt=""></div>
+		<div class="col-sm-4"><img src="images/imagem-interna.jpg" alt=""></div>
 	</div>
 
+	<input type="hidden" id="answers" name="answers" value="0">
 
 	<div class="results row hide text-center">
 		<h1>Processando a sua taxa de bondade...</h1>
+		<h1 class="text-danger" id="total"></h1>
 		<p><img class="main-image" src="images/teste-da-bondade.jpg" alt="" title="Créditos da imagem: www.wallcoo.com"></p>
 	</div>
 
