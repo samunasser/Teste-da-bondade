@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
 
+	window.index = 0;
 	window.createMenu = function (json, currentQuestion) {
 		$('#menu').html('');
 		var buttonClass = 'btn-primary';
@@ -21,12 +22,20 @@ $(document).ready(function() {
 		$.getJSON('questions.json', function(json) {
 			console.log('JSON Data: ' + json);
 			window.json = json;
-			window.createMenu(json,0);
+			window.question();
 		});
 	};
 
-	window.question = function(index) {
-		window.alert(window.json[index].title);
+	window.question = function() {
+		window.createMenu(window.json,window.index);
+		$('input[name=answer]').attr('checked',false);
+		$('.questions').removeClass('hide');
+		$('#question').html(window.json[window.index].title);
+		$('#option-1').html(window.json[window.index].option1);
+		$('#option-2').html(window.json[window.index].option2);
+		$('#option-3').html(window.json[window.index].option3);
+		$('#option-4').html(window.json[window.index].option4);
+		window.index++;
 	};
 
 });

@@ -38,6 +38,15 @@
 		<p><img class="main-image" src="images/teste-da-bondade.jpg" alt=""></p>
 		<p><button class="btn btn-lg btn-primary" onclick="start()">Começar o teste</button></p>
 	</div>
+	
+	<div class="questions radio hide">
+		<h1 id="question">Pergunta</h1>
+		<p><label for="radio-1"><input id="radio-1" name="answer" type="radio" value="1"> <span id="option-1">Opção 1</span></label></p>
+		<p><label for="radio-2"><input id="radio-2" name="answer" type="radio" value="2"> <span id="option-2">Opção 2</span></label></p>
+		<p><label for="radio-3"><input id="radio-3" name="answer" type="radio" value="3"> <span id="option-3">Opção 3</span></label></p>
+		<p><label for="radio-4"><input id="radio-4" name="answer" type="radio" value="4"> <span id="option-4">Opção 4</span></label></p>
+		<button onclick="question()">Próxima pergunta</button>
+	</div>
 
 	<footer class="footer row hide">
 		<p>Teste de bondade</p>
