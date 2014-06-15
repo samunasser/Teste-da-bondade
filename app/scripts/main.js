@@ -27,6 +27,10 @@ $(document).ready(function() {
 	};
 
 	window.question = function() {
+		window.index++;
+		if(window.index > window.json.length) { 
+			window.alert('acabou');
+		}
 		window.createMenu(window.json,window.index);
 		$('input[name=answer]').attr('checked',false);
 		$('.questions').removeClass('hide');
@@ -35,7 +39,7 @@ $(document).ready(function() {
 		$('#option-2').html(window.json[window.index].option2);
 		$('#option-3').html(window.json[window.index].option3);
 		$('#option-4').html(window.json[window.index].option4);
-		window.index++;
+
 	};
 
 });
