@@ -28,8 +28,10 @@ $(document).ready(function() {
 
 	window.question = function() {
 		window.index++;
-		if(window.index > window.json.length) { 
-			window.alert('acabou');
+		if(window.index > window.json.length) {
+			$('.questions').fadeOut(1000, function(){
+				$('.results').removeClass('hide').fadeIn('slow');
+			});
 		}
 		window.createMenu(window.json,window.index);
 		$('input[name=answer]').attr('checked',false);
