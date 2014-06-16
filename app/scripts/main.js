@@ -4,59 +4,72 @@ $(document).ready(function() {
 
 	window.index = 0;
 
-	// Tracks the steps of the test
-	window.createMenu = function (json, currentQuestion) {
+	// Shortcut to press enter
+	$(document).keypress(function(e) {
+		if(e.which === 13) { window.validate(); }
+	});
+
+
+
+	// Tracks the steps of the test in the header
+	window.createMenu = function () {
 		$('#menu').html('');
 		var buttonClass = 'btn-primary';
-		if(!currentQuestion) { currentQuestion = 0; }
-		for(var i = 1; i < json.length + 1; i++) {
-			if(currentQuestion < i) { buttonClass = 'btn-info'; }
-			if(currentQuestion === i) { buttonClass = 'btn-primary active'; }
+		for(var i = 1; i < window.questions.length + 1; i++) {
+			if(window.index < i) { buttonClass = 'btn-info'; }
+			if(window.index === i) { buttonClass = 'btn-primary active'; }
 			$('#menu').append('<li class="btn ' + buttonClass + '">' + i + '</li>');
 		}
 	};
 
 
+
 	// Loads the questions
 	window.start = function() {
-		window.json = '';
+		window.questions = '';
 		$('header').removeClass('hide');
 		$('footer').removeClass('hide');
 		$('.jumbotron').remove();
 		$.getJSON('questions.json', function(json) {
-			console.log('JSON Data: ' + json);
-			window.json = json;
+			window.questions = json;
 			window.question();
 		});
 	};
 
 
+
 	// Shows the next question
 	window.question = function() {
 		// If the questions are over, records to database and show the result
-		if(window.index >= window.json.length) {
+		if(window.index >= window.questions.length) {
 			$('.questions').fadeOut(1000, function(){
-				$.post('http://localhost:8888/teste/index.php?save', { 'name': 'John', 'age': '21', 'gender': 'm', 'religion': 'crente', 'answers': '1,2,3,4,1,2,3,4,1,2,3' }).done(function(data) {
+				$.post('http://localhost:8888/teste/index.php?save', { 'name': 'John', 'age': '21', 'gender': 'm', 'religion': 'crente', 'answers': $('#answers').val() }).done(function() {
 					$('.results').removeClass('hide').fadeIn('slow', function() {
 						$('#total').html(((window.sum / 110) * 100).toFixed(1) + '%');
 						$('#total').fadeIn(1000);
 					});
 				}).fail(function() {
-					window.alert('Não é possível! Ocorreu um erro! :-O\nSe o Chapolin não vier para nos defender, tente novamente daqui a pouquinho.');
+					//window.alert('Não é possível! Ocorreu um erro! :-O\nSe o Chapolin não vier para nos defender, tente novamente daqui a pouquinho.');
+					$('.results').removeClass('hide').fadeIn('slow', function() {
+						$('#total').html(((window.sum / 110) * 100).toFixed(1) + '%');
+						$('#total').fadeIn(1000);
+					});
+					window.startAnswers();
 				});
 			});
 		} else {
 			window.index++;
-			window.createMenu(window.json,window.index);
+			window.createMenu();
 			$('input[name=answer]').attr('checked',false);
 			$('.questions').removeClass('hide');
-			$('#question').html(window.json[window.index-1].title);
-			$('#option-1').html(window.json[window.index-1].option1);
-			$('#option-2').html(window.json[window.index-1].option2);
-			$('#option-3').html(window.json[window.index-1].option3);
-			$('#option-4').html(window.json[window.index-1].option4);
+			$('#question').html(window.questions[window.index-1].title);
+			$('#option-1').html(window.questions[window.index-1].option1);
+			$('#option-2').html(window.questions[window.index-1].option2);
+			$('#option-3').html(window.questions[window.index-1].option3);
+			$('#option-4').html(window.questions[window.index-1].option4);
 		}
 	};
+
 
 
 	// Writes the answers
@@ -79,8 +92,34 @@ $(document).ready(function() {
 		window.question();
 	};
 
-	// Shortcut to press enter
-	$(document).keypress(function(e) {
-		if(e.which === 13) { window.validate(); }
-	});
+
+
+	// Loads the answers
+	window.startAnswers = function() {
+		window.answers = '';
+		window.index = 0;
+
+		$.getJSON('answers.json', function(json) {
+			window.answers = json;
+		});
+	};
+
+
+
+	// Shows the next answer
+	window.answer = function() {
+		$('.results').addClass('hide');
+		// If the questions are over, records to database and show the result
+		if(window.index >= window.questions.length) {
+			$('.answers').remove();
+			$('.results').removeClass('hide');
+		} else {
+			window.index++;
+			window.createMenu();
+			$('.answers').removeClass('hide');
+			$('#answer-question').html(window.questions[window.index-1].title);
+			$('#god-answer').html(window.questions[window.index-1].option3);
+			$('#explanation').html(window.answers[window.index-1].answer);
+		}
+	};
 });

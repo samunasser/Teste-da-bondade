@@ -6,9 +6,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>teste</title>
+    <title>Teste de bondade</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+	<meta property="og:title" content="Teste de bondade" />
+	<meta property="og:description" content="Venha descobrir se você é angelical ou demoníaco" />
+	<meta property="og:image" content="https://secure268.hostgator.com.br/~samuw271/testedabondade.tk/thumb-teste-da-bondade.jpg" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -31,7 +35,6 @@
 		</div>
 	</header>
 
-
 	<div class="jumbotron row">
 		<h1>Teste da bondade</h1>
 		<p class="lead">Descubra se você é bom de verdade. ;)</p>
@@ -53,19 +56,47 @@
 
 	<input type="hidden" id="answers" name="answers" value="0">
 
+	<div class="fb-login-button" data-max-rows="0" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
 	<div class="results row hide text-center">
-		<h1>Processando a sua taxa de bondade...</h1>
-		<h1 class="text-danger" id="total"></h1>
+		<h1>Sua taxa de bondade é... <span class="text-danger" id="total"></span></h1>
+
+		<p>Agora é hora de mandar pros seus amigos pra ver se eles vão pro céu! ;)</p>
+		<p>
+			<a class="btn btn-lg btn-primary" title="send to Facebook" href="https://www.facebook.com/dialog/feed?app_id=305507602959397&display=popup&link=https://secure268.hostgator.com.br/~samuw271/testedabondade.tk/&redirect_uri=https://apps.facebook.com/testedabondade_tk/" target="_blank">Compartilhe no Facebook</a>
+			<button class="btn btn-lg btn-default" onclick="answer()">Veja as respostas</button>
+		</p>
 		<p><img class="main-image" src="images/teste-da-bondade.jpg" alt="" title="Créditos da imagem: www.wallcoo.com"></p>
 	</div>
 
 
+	<div class="answers row hide">
+		<h2 id="answer-question">Pergunta</h2>
+		<div class="col-sm-6">
+			<h3>O que deus faria...</h3>
+			<p id="god-answer" class="bg-info text-muted"></p>
+			<button class="btn btn-lg btn-success" onclick="answer()">Próxima resposta</button>
+		</div>
+		<div class="col-sm-6">
+			<blockquote>
+				<p id="explanation"></p>
+			</blockquote>
+		</div>
+	</div>
 
 	<footer class="footer row hide">
 		<p class="text-center text-muted"><small>Teste de bondade - Você é angelical ou demoníaco?</small></p>
 	</footer>
 </div>
 
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1432507247012227&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
@@ -80,7 +111,7 @@
     e=o.createElement(i);r=o.getElementsByTagName(i)[0];
     e.src='//www.google-analytics.com/analytics.js';
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X');ga('send','pageview');
+    ga('create','UA-51822424-2');ga('send','pageview');
 </script>
 
 <!-- build:js scripts/main.js -->

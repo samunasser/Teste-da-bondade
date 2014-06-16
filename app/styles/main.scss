@@ -2,16 +2,19 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'sass-bootstrap/lib/bootstrap';
 
-
-
+footer { clear: both; }
+#explanation { font-style: italic; }
 #menu { pointer-events: none; }
 .jumbotron { background: #fefeda; color: #666; padding-bottom: 30px; padding-top: 30px; }
 .main-image { margin-bottom: 1em; }
-.questions { height: 500px; position: relative; }
+.answers, .questions { height: 500px; position: relative; }
 .questions img { max-width: 100%; }
-.questions h2 { font-size: 28px; height: 120px; margin-bottom: 1em; }
+.answers h2, .questions h2 { font-size: 28px; height: 120px; margin-bottom: 1em; }
+.answers h2 { height: 100px; }
+.answers h3 { color: #666; }
 .questions span { display: block; }
-.questions .btn { left: 160px; margin: 0 auto; position: absolute; top: 265px; }
+.answers .btn, .questions .btn { left: 140px; margin: 0 auto; position: absolute; top: 265px; }
+.answers .btn { left: 95px; }
 .questions .radio { position: relative; }
 .results img { margin: 0 auto; }
 
