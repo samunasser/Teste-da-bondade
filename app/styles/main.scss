@@ -5,6 +5,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 footer { clear: both; }
 #explanation { font-style: italic; }
 #menu { pointer-events: none; }
+.btn-success { margin-right: 1em; }
 .jumbotron { background: #fefeda; color: #666; padding-bottom: 30px; padding-top: 30px; }
 .main-image { margin-bottom: 1em; }
 .answers, .questions { height: 500px; position: relative; }
@@ -16,7 +17,9 @@ footer { clear: both; }
 .answers .btn, .questions .btn { left: 140px; margin: 0 auto; position: absolute; top: 265px; }
 .answers .btn { left: 95px; }
 .questions .radio { position: relative; }
+.radio input[type=radio] { margin-left: -19px !important; }
 .results img { margin: 0 auto; }
+.survey form label { display: block; }
 
 .browsehappy {
     margin: 0.2em 0;

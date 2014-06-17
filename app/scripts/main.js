@@ -40,22 +40,10 @@ $(document).ready(function() {
 
 	// Shows the next question
 	window.question = function() {
-		// If the questions are over, records to database and show the result
+		// If the questions are over, brings the survey form
 		if(window.index >= window.questions.length) {
-			$('.questions').fadeOut(1000, function(){
-				$.post('http://localhost:8888/teste/index.php?save', { 'name': 'John', 'age': '21', 'gender': 'm', 'religion': 'crente', 'answers': $('#answers').val() }).done(function() {
-					$('.results').removeClass('hide').fadeIn('slow', function() {
-						$('#total').html(((window.sum / 110) * 100).toFixed(1) + '%');
-						$('#total').fadeIn(1000);
-					});
-				}).fail(function() {
-					//window.alert('Não é possível! Ocorreu um erro! :-O\nSe o Chapolin não vier para nos defender, tente novamente daqui a pouquinho.');
-					$('.results').removeClass('hide').fadeIn('slow', function() {
-						$('#total').html(((window.sum / 110) * 100).toFixed(1) + '%');
-						$('#total').fadeIn(1000);
-					});
-					window.startAnswers();
-				});
+			$('.questions').fadeOut(750, function(){
+				$('.survey').removeClass('hide').fadeIn(750);
 			});
 		} else {
 			window.index++;
@@ -68,6 +56,36 @@ $(document).ready(function() {
 			$('#option-3').html(window.questions[window.index-1].option3);
 			$('#option-4').html(window.questions[window.index-1].option4);
 		}
+	};
+
+
+	// Show results
+	window.results = function() {
+		$('.survey').remove();
+		$('.results').removeClass('hide').fadeIn('slow', function() {
+			$('#total').html(((window.sum / 110) * 100).toFixed(1) + '%');
+			$('#total').fadeIn(1000);
+		});
+		window.startAnswers();
+	};
+
+
+	// Record to database
+	window.validateResults = function() {
+		if(!$('input[name=age]').is(':checked') || !$('input[name=gender]').is(':checked') || !$('input[name=religion]').is(':checked')) {
+			window.alert('Por favor, preencha todos os dados da nossa pesquisa. :)');
+			return false;
+		}
+		$.post('index.php?save', {
+			'age': $('input[name=age]:checked').val(),
+			'gender': $('input[name=gender]:checked').val(),
+			'religion': $('input[name=religion]:checked').val(),
+			'answers': $('#answers').val()
+		}).done(function() {
+			window.results();
+		}).fail(function() {
+			window.alert('Não é possível! Ocorreu um erro! :-O\nSe o Chapolin não vier para nos defender, tente novamente daqui a pouquinho.');
+		});
 	};
 
 

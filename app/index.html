@@ -9,10 +9,13 @@
     <title>Teste de bondade</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+	<meta property="og:site_name" content="Teste de bondade"/>
 	<meta property="og:title" content="Teste de bondade" />
-	<meta property="og:description" content="Venha descobrir se você é angelical ou demoníaco" />
+	<meta property="og:description" content="Venha descobrir se você é angelical ou demoníaco. Será que você é mesmo tão bom quanto pensa?" />
+	<meta property="fb:app_id" content="305507602959397" />
 	<meta property="og:image" content="https://secure268.hostgator.com.br/~samuw271/testedabondade.tk/thumb-teste-da-bondade.jpg" />
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<meta property="og:url" content="http://www.testedabondade.tk/" />
+	<link rel="shortcut icon" href="https://secure268.hostgator.com.br/~samuw271/testedabondade.tk/favicon.ico" type="image/x-icon" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -29,7 +32,7 @@
 
 <div class="container">
 	<header class="row hide">
-		<div class="header col-md-12">
+		<div class="header col-xs-12">
 			<ul class="nav nav-pills pull-right" id="menu"></ul>
 			<h4 class="text-muted">Teste de bondade</h4>
 		</div>
@@ -38,45 +41,80 @@
 	<div class="jumbotron row">
 		<h1>Teste da bondade</h1>
 		<p class="lead">Descubra se você é bom de verdade. ;)</p>
-		<p><img class="main-image" src="images/teste-da-bondade.jpg" alt="" title="Créditos da imagem: www.wallcoo.com"></p>
+		<p><img class="main-image" src="/images/teste-da-bondade.jpg" alt="" title="Créditos da imagem: www.wallcoo.com"></p>
 		<p><button class="btn btn-lg btn-primary" onclick="start()">Começar o teste</button></p>
 	</div>
 
 	<div class="questions hide row">
 		<h2 id="question">Pergunta</h2>
-		<div class="radio col-sm-8">
+		<div class="radio col-xs-8">
 			<p><label for="radio-1"><input id="radio-1" name="answer" autofocus="" type="radio" value="1"> <span id="option-1">Opção 1</span></label></p>
 			<p><label for="radio-2"><input id="radio-2" name="answer" type="radio" value="2"> <span id="option-2">Opção 2</span></label></p>
 			<p><label for="radio-3"><input id="radio-3" name="answer" type="radio" value="3"> <span id="option-3">Opção 3</span></label></p>
 			<p><label for="radio-4"><input id="radio-4" name="answer" type="radio" value="4"> <span id="option-4">Opção 4</span></label></p>
 			<button class="btn btn-lg btn-success" onclick="validate()">Próxima pergunta</button>
 		</div>
-		<div class="col-sm-4"><img src="images/imagem-interna.jpg" alt=""></div>
+		<div class="col-xs-4"><img src="/images/imagem-interna.jpg" alt=""></div>
 	</div>
 
 	<input type="hidden" id="answers" name="answers" value="0">
 
-	<div class="fb-login-button" data-max-rows="0" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
+
+	<div class="survey row hide">
+		<h1>Estamos calculando sua taxa de bondade...</h1>
+
+		<p class="lead">Mas antes, por favor, preencha esses dados para nossa pesquisa.</p>
+		<p class="text-muted">Quando chegarmos em 10mil questionários preenchidos, vamos mostrar as estatísticas finais.</p>
+		<form class="container form-horizontal">
+			<div class="form-group radio col-xs-4">
+				<h4>Idade</h4>
+				<p><label><input type="radio" name="age" value="18">Até 18 anos</label></p>
+				<p><label><input type="radio" name="age" value="25">Até 25 anos</label></p>
+				<p><label><input type="radio" name="age" value="40">Até 40 anos</label></p>
+				<p><label><input type="radio" name="age" value="99">Mais de 40 anos</label></p>
+			</div>
+			<div class="form-group radio col-xs-4">
+				<h4>Sexo</h4>
+				<p><label><input type="radio" name="gender" value="m">Homem</label></p>
+				<p><label><input type="radio" name="gender" value="f">Mulher</label></p>
+			</div>
+			<div class="form-group radio col-xs-4">
+				<h4>Religião</h4>
+				<p><label><input type="radio" name="religion" value="catolica">Católica</label></p>
+				<p><label><input type="radio" name="religion" value="evangelica">Evangélica</label></p>
+				<p><label><input type="radio" name="religion" value="espirita">Espírita</label></p>
+				<p><label><input type="radio" name="religion" value="outras">Outras</label></p>
+				<p><label><input type="radio" name="religion" value="agnostica">Sem religião</label></p>
+			</div>
+		</form>
+		<p class="text-center">
+			<button class="btn btn-lg btn-success" onclick="validateResults()">Ver resultados</button>
+			<button class="btn btn-md btn-default" onclick="results()">Fiz de zueira, não grave esses dados</button>
+		</p>
+	</div>
+
+
 	<div class="results row hide text-center">
 		<h1>Sua taxa de bondade é... <span class="text-danger" id="total"></span></h1>
 
 		<p>Agora é hora de mandar pros seus amigos pra ver se eles vão pro céu! ;)</p>
+
 		<p>
-			<a class="btn btn-lg btn-primary" title="send to Facebook" href="https://www.facebook.com/dialog/feed?app_id=305507602959397&display=popup&link=https://secure268.hostgator.com.br/~samuw271/testedabondade.tk/&redirect_uri=https://apps.facebook.com/testedabondade_tk/" target="_blank">Compartilhe no Facebook</a>
+			<a class="btn btn-lg btn-primary" href="https://www.facebook.com/dialog/share?app_id=305507602959397&display=popup&href=http://testedabondade.tk/&redirect_uri=https://apps.facebook.com/testedabondade_tk/" target="_blank">Compartilhe no Facebook</a>
 			<button class="btn btn-lg btn-default" onclick="answer()">Veja as respostas</button>
 		</p>
-		<p><img class="main-image" src="images/teste-da-bondade.jpg" alt="" title="Créditos da imagem: www.wallcoo.com"></p>
+		<p><img class="main-image" src="/images/teste-da-bondade.jpg" alt="" title="Créditos da imagem: www.wallcoo.com"></p>
 	</div>
 
 
 	<div class="answers row hide">
 		<h2 id="answer-question">Pergunta</h2>
-		<div class="col-sm-6">
+		<div class="col-xs-6">
 			<h3>O que deus faria...</h3>
 			<p id="god-answer" class="bg-info text-muted"></p>
 			<button class="btn btn-lg btn-success" onclick="answer()">Próxima resposta</button>
 		</div>
-		<div class="col-sm-6">
+		<div class="col-xs-6">
 			<blockquote>
 				<p id="explanation"></p>
 			</blockquote>
@@ -87,16 +125,6 @@
 		<p class="text-center text-muted"><small>Teste de bondade - Você é angelical ou demoníaco?</small></p>
 	</footer>
 </div>
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1432507247012227&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
@@ -119,18 +147,6 @@
 <!-- endbuild -->
 
 <!-- build:js scripts/plugins.js -->
-<script src="bower_components/sass-bootstrap/js/affix.js"></script>
-<script src="bower_components/sass-bootstrap/js/alert.js"></script>
-<script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
-<script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
-<script src="bower_components/sass-bootstrap/js/modal.js"></script>
-<script src="bower_components/sass-bootstrap/js/transition.js"></script>
-<script src="bower_components/sass-bootstrap/js/button.js"></script>
-<script src="bower_components/sass-bootstrap/js/popover.js"></script>
-<script src="bower_components/sass-bootstrap/js/carousel.js"></script>
-<script src="bower_components/sass-bootstrap/js/scrollspy.js"></script>
-<script src="bower_components/sass-bootstrap/js/collapse.js"></script>
-<script src="bower_components/sass-bootstrap/js/tab.js"></script>
 <!-- endbuild -->
 </body>
 </html>
